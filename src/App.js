@@ -1,4 +1,18 @@
+import { useState } from "react";
+import NoteCreate from "./components/NoteCreate";
+
 function App () {
-    return <div>App</div>;
+
+    const [notes, setNotes] = useState([]);
+
+    const handleCreateNotes = (title) => {
+        console.log(title);
+    };
+
+    return (
+        <div>
+            <NoteCreate onCreate={handleCreateNotes} />
+        </div>
+    );
 };
 export default App;
