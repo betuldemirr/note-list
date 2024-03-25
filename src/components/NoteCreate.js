@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function NoteCreate ({ onCreate }) {
-
     const [title, setTitle] = useState('');
 
     const handleChange = (event) => {
@@ -15,11 +14,12 @@ function NoteCreate ({ onCreate }) {
     }
 
     return (
-        <div>
+        <div className="note-create">
+            <h3>Add a Note</h3>
             <form onSubmit={handleSubmit}>
-                <label>create a note</label>
-                <input value={title} onChange={handleChange} />
-                <button>Create</button>
+                <label>Title</label>
+                <input className="input" value={title} onChange={handleChange} />
+                <button className="button">Create</button>
             </form>
         </div>
     );
