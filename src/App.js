@@ -36,6 +36,7 @@ function App () {
 
     return (
         <div className="app">
+            <h1>Note List</h1>
             <NoteList onEdit={editNoteById} notes={notes} onDelete={deleteNoteById} />
             <NoteCreate onCreate={createNote} />
         </div>

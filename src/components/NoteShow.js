@@ -25,6 +25,7 @@ function NoteShow ({ note, onDelete, onEdit }) {
     }
 
     return <div className="note-show">
+            <img alt="note" src={`https://picsum.photos/seed/${note.id}/300/200`}/>
             <div>{content}</div>
             <div className="actions">
                 <button className="edit" onClick={handleEditClick} >
