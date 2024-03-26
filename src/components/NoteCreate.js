@@ -13,15 +13,13 @@ function NoteCreate ({ onCreate }) {
         setTitle('');
     }
 
-    return (
-        <div className="note-create">
+    return <div className="note-create">
             <h3>Add a Note</h3>
             <form onSubmit={handleSubmit}>
                 <label>Title</label>
                 <input className="input" value={title} onChange={handleChange} />
                 <button className="button">Create</button>
             </form>
-        </div>
-    );
+        </div>;
 };
 export default NoteCreate;

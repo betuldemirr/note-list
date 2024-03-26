@@ -6,6 +6,16 @@ function App () {
 
     const [notes, setNotes] = useState([]);
 
+    const editNoteById = (id, newTitle) => {
+        const updatedNotes = notes.map( (note) => {
+            if(note.id === id) {
+                return {...note, title: newTitle};
+            }
+            return note;
+        });
+        setNotes(updatedNotes);
+    };
+
     const deleteNoteById = (id) => {
         const updatedNotes = notes.filter( (note) => {
             return note.id !== id; //return false
@@ -26,7 +36,7 @@ function App () {
 
     return (
         <div className="app">
-            <NoteList notes={notes} onDelete={deleteNoteById} />
+            <NoteList onEdit={editNoteById} notes={notes} onDelete={deleteNoteById} />
             <NoteCreate onCreate={createNote} />
         </div>
     );
