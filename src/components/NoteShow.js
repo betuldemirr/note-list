@@ -13,9 +13,15 @@ function NoteShow ({ note, onDelete, onEdit }) {
         setShowEdit(!showEdit);
     };
 
+    const handleSubmit = (id, newTitle) => {
+        setShowEdit(false);
+        onEdit(id, newTitle);
+        console.log(showEdit);
+    };
+
     let content = <h3>{note.title}</h3>;
     if(showEdit) {
-        content = <NoteEdit note={note} onEdit={onEdit} />;
+        content = <NoteEdit note={note} onSubmit={handleSubmit} />;
     }
 
     return <div className="note-show">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function NoteEdit ({ note, onEdit }) {
+function NoteEdit ({ note, onSubmit }) {
 
     const [title, setTitle] = useState(note.title);
 
@@ -10,7 +10,7 @@ function NoteEdit ({ note, onEdit }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onEdit(note.id, title);
+        onSubmit(note.id, title); 
     };
 
     return <form className="note-edit" onSubmit={handleSubmit} >
