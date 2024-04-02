@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NoteCreate from "./components/NoteCreate";
 import NoteList from "./components/NoteList";
+import axios from 'axios';
 
 function App () {
 
     const [notes, setNotes] = useState([]);
 
-    const editNoteById = (id, newTitle) => {
+    const fetchNotes = async() => {
+        const response = await axios.get('http://localhost:3001/notes');
+        setNotes(response.data);
+    };
+
+    useEffect(() => {
+        fetchNotes();
+    }, []);
+
+    const editNoteById = async (id, newTitle) => {
+        const response = await axios.put(`http://localhost:3001/notes/${id}`, {
+            title: newTitle
+        });
+
         const updatedNotes = notes.map( (note) => {
             if(note.id === id) {
-                return {...note, title: newTitle};
+                return {...note, ...response.data};
             }
             return note;
         });
@@ -23,13 +37,14 @@ function App () {
         setNotes(updatedNotes);
     };
 
-    const createNote = (title) => {
+    const createNote = async(title) => {
+        const response = await axios.post('http://localhost:3001/notes', {
+            title: title
+        });
+
         const updatedNotes = [
             ...notes,
-            {
-                id: Math.round(Math.random() * 9999), //create random id
-                title,
-            },
+            response.data,
         ];
         setNotes(updatedNotes);
     }
