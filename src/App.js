@@ -30,7 +30,9 @@ function App () {
         setNotes(updatedNotes);
     };
 
-    const deleteNoteById = (id) => {
+    const deleteNoteById = async (id) => {
+        await axios.delete(`http://localhost:3001/notes/${id}`);
+        
         const updatedNotes = notes.filter( (note) => {
             return note.id !== id; //return false
         });
